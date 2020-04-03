@@ -41,7 +41,7 @@ A few key points :
 Name | Type | Description
 -|-|-
 `id` | `integer` | Primary Key
-`name` | `varchar(50)` | Name of the customer
+`name` | `varchar(255)` | Name of the customer
 `created_date` | `date` | Date of creation
 
 #### transactions
@@ -49,7 +49,7 @@ Name | Type | Description
 Name | Type | Description
 -|-|-
 `id` | `integer` | Primary Key
-`store_name` | `string` | Name of the store where the transaction was made
+`store_name` | `varchar(50)` | Name of the store where the transaction was made
 `amount` | `integer` | Transaction's full amount, in cents
 `split` | `integer` | Number of instalments for the transaction
 `is_completed` | `boolean` | Have all instalments been paid off ?
@@ -101,3 +101,7 @@ We expect :
 - A clean files structure
 - Some commands to run from the `package.json`
 - A documentation on how to install, start and use this API
+
+
+
+**Good luck and have fun !**
