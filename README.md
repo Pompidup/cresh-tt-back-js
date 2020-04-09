@@ -94,7 +94,7 @@ Route | Method | Query String | Body | Description
 
 ## Deliverable
 
-Please **fork** this repository and make a PR once you're done.
+Please **clone** this repository and send us a zip or a link to your repo.
 
 We expect :
 
