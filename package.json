@@ -10,7 +10,8 @@
     "preinstall": "npx only-allow yarn",
     "start": "node build/server.js",
     "watch": "tsnd --respawn src/server.ts",
-    "test": "jest --watchAll --collectCoverage"
+    "test": "jest",
+    "test-watch": "jest --watchAll --collectCoverage"
   },
   "author": "",
   "license": "ISC",
