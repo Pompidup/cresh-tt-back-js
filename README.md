@@ -31,52 +31,54 @@ A few key points :
 - When calculating each instalment amount, if you can't have an exact split, the remainder is to be added to the first one ;
 - When all instalments of a transaction have been paid off, its `is_completed` flag must be switched to `true`.
 
-
 ### Data model
 
 > Note: Relations between tables and default values are voluntarily left out for you to guess.
 
 #### customers
 
-Name | Type | Description
--|-|-
-`id` | `integer` | Primary Key
-`name` | `varchar(255)` | Name of the customer
-`created_date` | `date` | Date of creation
+
+| Name | Type | Description |
+| - | - | - |
+| `id` | `integer` | Primary Key |
+| `name` | `varchar(255)` | Name of the customer |
+| `created_date` | `date` | Date of creation |
 
 #### transactions
 
-Name | Type | Description
--|-|-
-`id` | `integer` | Primary Key
-`store_name` | `varchar(50)` | Name of the store where the transaction was made
-`amount` | `integer` | Transaction's full amount, in cents
-`split` | `integer` | Number of instalments for the transaction
-`is_completed` | `boolean` | Have all instalments been paid off ?
-`created_date` | `date` | Date of creation
+
+| Name | Type | Description |
+| - | - | - |
+| `id` | `integer` | Primary Key |
+| `store_name` | `varchar(50)` | Name of the store where the transaction was made |
+| `amount` | `integer` | Transaction's full amount, in cents |
+| `split` | `integer` | Number of instalments for the transaction |
+| `is_completed` | `boolean` | Have all instalments been paid off ? |
+| `created_date` | `date` | Date of creation |
 
 #### instalments
 
-Name | Type | Description
--|-|-
-`id` | `integer` | Primary Key
-`amount` | `integer` | Instalment amount, in cents
-`is_paid` | `boolean` | Is the payment done yet
-`planned_date` | `date` | Planned date of payment
-`paid_date` | `date` | Actual payment date
+
+| Name | Type | Description |
+| - | - | - |
+| `id` | `integer` | Primary Key |
+| `amount` | `integer` | Instalment amount, in cents |
+| `is_paid` | `boolean` | Is the payment done yet |
+| `planned_date` | `date` | Planned date of payment |
+| `paid_date` | `date` | Actual payment date |
 
 ### API Documentation
 
-Route | Method | Query String | Body | Description
--|-|-|-|-
-`/ping` | GET | - | - | See if the service is running properly, including the DB
-`/customers` | GET | - | - | List of customers
-`/customers` | POST | - | `name` | Create a customer
-`/customers/:id/transactions` | GET | - | - | List of transactions for a specific customer
-`/transactions` | POST | - | `store_name`<br />`amount`<br />`split`<br />`user_id` | Create a transaction
-`/transactions/:id/instalments` | GET | - | - | List of a transaction's instalments
-`/transactions/:id/instalments` | PUT | - | - | Trigger the payment of the transaction's next instalment
 
+| Route | Method | Query String | Body | Description |
+| - | - | - | - | - |
+| `/ping` | GET | - | - | See if the service is running properly, including the DB |
+| `/customers` | GET | - | - | List of customers |
+| `/customers` | POST | - | `name` | Create a customer |
+| `/customers/:id/transactions` | GET | - | - | List of transactions for a specific customer |
+| `/transactions` | POST | - | `store_name`<br />`amount`<br />`split`<br />`user_id` | Create a transaction |
+| `/transactions/:id/instalments` | GET | - | - | List of a transaction's instalments |
+| `/transactions/:id/instalments` | PUT | - | - | Trigger the payment of the transaction's next instalment |
 
 ## What's evaluated
 
@@ -102,6 +104,42 @@ We expect :
 - Some commands to run from the `package.json`
 - A documentation on how to install, start and use this API
 
-
-
 **Good luck and have fun !**
+
+# How to use/run this app
+
+## Before all: Install
+
+```bash
+yarn install
+```
+
+then cp .env.example .env
+
+### In development mode
+
+```bash
+yarn test-watch (watch mode) or yarn test (run once)
+yarn watch (run server with tsc in watch mode)
+```
+
+### In production mode
+
+```bash
+yarn build
+yarn start
+```
+
+### Before commit/push
+
+```bash
+yarn test
+yarn eslint
+```
+
+## Utils and rules
+
+Project use Husky to manage branch naming conventions.
+Allowed branch name format: <feat|fix|chore>-my-branch-name
+
+Only yarn is used for managing dependencies.
